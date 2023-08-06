@@ -1,0 +1,29 @@
+function C=ques_1_compliance_trans_plane()
+% prompt="Enter the value of E";
+% prompt_1="Enter the value of poisson's ratio";
+% prompt_2="Enter the value of G";
+%E1=15;
+%E2=20;
+%E3=input(prompt);
+%poisson_ratio_12=0.3;
+%poisson_ratio_13=input(prompt_1);
+%poisson_ratio_23=input(prompt_1);
+%G12=5;
+G13=5;
+G23=5;
+S=zeros(2,2);
+S(1,1)=1/G13;
+S(1,2)=0;
+%S(1,3)=poisson_ratio_13/E3;
+S(2,1)=0;
+S(2,2)=1/G23;
+%S(2,3)=poisson_ratio_23/E3;
+%S(3,1)=poisson_ratio_13/E1;
+%S(3,2)=poisson_ratio_23/E2;
+%S(3,3)=1/E3;
+%S(4,4)=1/G23;
+%S(5,5)=1/G13;
+%S(3,3)=1/G12;
+C=inv(S);
+end
+
