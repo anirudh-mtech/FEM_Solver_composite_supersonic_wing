@@ -40,12 +40,12 @@ for boom=2:8
  I_spar=boom;J_spar=boom;K_spar=boom;L_spar=boom; M_spar=boom;N_spar=boom;P_spar=boom;Q_spar=boom;R_spar=boom;S_spar=boom;%spar
  I_rib=boom;J_rib=boom;K_rib=boom;L_rib=boom; M_rib=boom;N_rib=boom;P_rib=boom;Q_rib=boom;R_rib=boom;S_rib=boom;%ribs
  %Stiffness_of_skin=FEM_Main_file_skin(gauss_points_in_x,gauss_points_in_y,gauss_points_trans_x,gauss_points_trans_y,weights_in_x,weights_in_y,sweep,b,cr,I,J,K,L,M,N,P,Q,R,S,thickness_of_each_ply(po),theta(po),weights_trans_x,weights_trans_y,t_1,h_1,h);
-  %Stiffness_of_spars_web=FEM_Main_file_spars_web(gauss_points_in_x,gauss_points_in_y,gauss_points_trans_x,gauss_points_trans_y,weights_in_x,weights_in_y,weights_trans_x,weights_trans_y,sweep,b,cr,I_spar,J_spar,K_spar,L_spar,M_spar,N_spar,P_spar,Q_spar,R_spar,S_spar,h,h_1,t_1,theta,thickness_of_each_ply);
+ % Stiffness_of_spars_web=FEM_Main_file_spars_web(gauss_points_in_x,gauss_points_in_y,gauss_points_trans_x,gauss_points_trans_y,weights_in_x,weights_in_y,weights_trans_x,weights_trans_y,sweep,b,cr,I_spar,J_spar,K_spar,L_spar,M_spar,N_spar,P_spar,Q_spar,R_spar,S_spar,h,h_1,t_1,theta,thickness_of_each_ply);
 %  Stiffness_of_spars_cap=FEM_Main_file_spars_cap(gauss_points_in_x,gauss_points_in_y,gauss_points_trans_x,gauss_points_trans_y,weights_in_x,weights_in_y,weights_trans_x,weights_trans_y,sweep,b,cr,I_spar,J_spar,K_spar,L_spar,M_spar,N_spar,P_spar,Q_spar,R_spar,S_spar,l_1,h,h_1);
-%  Stiffness_of_rib_web=FEM_Main_file_rib_web(gauss_points_in_x,gauss_points_in_y,gauss_points_trans_x,gauss_points_trans_y,weights_in_x,weights_in_y,weights_trans_x,weights_trans_y,sweep,b,cr,I_rib,J_rib,K_rib,L_rib,M_rib,N_rib,P_rib,Q_rib,R_rib,S_rib,h_2,t_2,h);
-  Stiffness_of_rib_cap=FEM_Main_file_ribs_cap(gauss_points_in_x,gauss_points_in_y,gauss_points_trans_x,gauss_points_trans_y,weights_in_x,weights_in_y,weights_trans_x,weights_trans_y,sweep,b,cr,I_rib,J_rib,K_rib,L_rib,M_rib,N_rib,P_rib,Q_rib,R_rib,S_rib,l_1,h_2,h,theta(po),thickness_of_each_ply(po));
+  Stiffness_of_rib_web=FEM_Main_file_rib_web(gauss_points_in_x,gauss_points_in_y,gauss_points_trans_x,gauss_points_trans_y,weights_in_x,weights_in_y,weights_trans_x,weights_trans_y,sweep,b,cr,I,J,K,L,M,N,P,Q,R,S,h_2,t_2,h,theta(po),thickness_of_each_ply(po));
+%  Stiffness_of_rib_cap=FEM_Main_file_ribs_cap(gauss_points_in_x,gauss_points_in_y,gauss_points_trans_x,gauss_points_trans_y,weights_in_x,weights_in_y,weights_trans_x,weights_trans_y,sweep,b,cr,I_rib,J_rib,K_rib,L_rib,M_rib,N_rib,P_rib,Q_rib,R_rib,S_rib,l_1,h_2,h,theta,thickness_of_each_ply);
   Stiffness_of_bc=Artificial_Stiffness(I,J,K,L,M,N,P,Q,R,S,sweep,b,cr,gauss_points_in_x,gauss_points_in_y,gauss_points_trans_x,gauss_points_trans_y,weights_in_x,weights_in_y,weights_trans_x,weights_trans_y);
- Final_Stiffness=Stiffness_of_bc+Stiffness_of_rib_cap;%+Stiffness_of_rib_cap+Stiffness_of_rib_web+Stiffness_of_spars_cap+Stiffness_of_spars_web;Stiffness_of_skin
+ Final_Stiffness=Stiffness_of_bc+Stiffness_of_rib_web;%+Stiffness_of_rib_cap+Stiffness_of_rib_web+Stiffness_of_spars_cap+Stiffness_of_spars_web;Stiffness_of_skin
  force_local=[0;0;(5.2079);0;0];
  force_vector_final=force_vector(sweep,cr,b,I,J,K,L,M,N,P,Q,R,S,gauss_points_in_x,gauss_points_in_y,gauss_points_in_z,weights_in_x,weights_in_y,force_local);
  bc_u=linspace(1,I*J,I*J);%,I*J+K*L+M*N+P*Q+R*S];
@@ -118,5 +118,5 @@ end
 toc
 plot(2:boom,Final_converge(2:boom),"-o");
 xlabel("Number of nodes for each of the displacement")
-ylabel("Transverse displacement Rib cap in mm")
+ylabel("Transverse displacement Rib web in mm")
 title("Convergence test")
